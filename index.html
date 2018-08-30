@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Recipe Box</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="recipe-container">
+
+            <div class="recipe-title">
+                <ul class="recipe-menu"></ul>
+            </div>
+            <div class="recipe-content">
+                <div class="recipe-text">
+                    <h2 id="recipe-heading">Heading</h2>
+                    <ul id="recipe-text-div">
+
+                    </ul>
+                </div>
+
+                <div class="recipe-ingredents-div">
+                    <h2>Ingredents</h2>
+                    <ul id="recipe-ingredents"></ul>
+                </div>
+                <div class="recipe-direction-div">
+                    <h2>Description</h2>
+                    <ul id="recipe-direction"></ul>
+                </div>
+                <div class="add-recipe-div">
+                    <i class="fa fa-plus-circle" id="add-recipe"></i>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container" id="addRecipeBox">
+        <div class="markSign">
+            <i class="fa fa-times-circle" id="close-sign"></i>
+        </div>
+        <form id="addRecipeForm" autocomplete="off">
+            <p>Recipe Name</p>
+            <input type="text" id="recipe-name">
+            <p>Ingredents</p>
+            <textarea cols="40" rows="5" id="ingredents"></textarea>
+
+            <p>Descipttion</p>
+            <textarea cols="40" rows="5" id="description"></textarea>
+        </form>
+
+        <div class="btns">
+            <button class="addRecipe">Add</button>
+            <button class="close">Close</button>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="main.js"></script>
+</body>
+
+</html>
