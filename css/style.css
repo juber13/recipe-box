@@ -3,11 +3,22 @@ body {
   margin: 0;
   padding: 0;
   box-sizinig: border-box;
+  background: #757480;
+}
+
+.header {
+  width: 50%;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 50px;
+  font-family: sans-serif;
+  color: #fff;
+  text-shadow: 5px 8px 5px #000;
 }
 
 .wrapper {
   max-width: 700px;
-  margin: 200px auto;
+  margin: 100px auto;
   position: relative;
 }
 
@@ -17,6 +28,7 @@ body {
   border-radius: 4px;
   font-family: sans-serif;
   padding-bottom: 50px;
+  background: #fff;
 }
 
 .recipe-content {
@@ -108,14 +120,16 @@ ul li {
   margin: 0 auto;
   border: 2px solid #ddd;
   text-align: center;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
   border-radius: 5px;
   font-size: 20px;
-  padding-bottom: 30px;
-  background: #f2f2f2;
+  padding-bottom: 4.5em;
+  background: skyblue;
   color: #647344;
   position: absolute;
   top: 100px;
-  left: 300px;
+  left: 400px;
   display: none;
 }
 
@@ -145,4 +159,8 @@ form input {
 
 .active {
   display: block !important;
+}
+
+.active {
+  background: rgba(0, 0, 0, 0.9);
 }
