@@ -12,56 +12,26 @@
 </head>
 
 <body>
-    <div class="header">
-        <h2>Reciep Box</h2>
-    </div>
-    <div class="wrapper">
-        <div class="recipe-container">
+    <h2 class="header">Recipe Box</h2>
+    <div class="recipe-wrapper">
+        <div class="recipe-app"></div>
 
-            <div class="recipe-title">
-                <ul class="recipe-menu"></ul>
+        <div class="add-recipe-container">
+            <button class="fa fa-plus-circle" id="newRecipeBtn" title="add New recipe"></button>
+            <div class="addRecipeForm">
+                <form id="recipeForm" autocomplete="off">
+                    <p>RecipeName</p>
+                    <input type="text" id="recipeName">
+                    <p>Ingredents</p>
+                    <textarea cols="30" rows="2" id="ingredentsName"></textarea>
+                    <p>Direction</p>
+                    <textarea cols="30" rows="4" id="directionName"></textarea>
+                    <div>
+                        <button type="submit">Add</button>
+                        <button title="close recipe box">Close</button>
+                    </div>
+                </form>
             </div>
-            <div class="recipe-content">
-                <div class="recipe-text">
-                    <h2 id="recipe-heading">Heading</h2>
-                    <ul id="recipe-text-div">
-
-                    </ul>
-                </div>
-
-                <div class="recipe-ingredents-div">
-                    <h2>Ingredents</h2>
-                    <ul id="recipe-ingredents"></ul>
-                </div>
-                <div class="recipe-direction-div">
-                    <h2>Direction</h2>
-                    <ul id="recipe-direction"></ul>
-                </div>
-                <div class="add-recipe-div">
-                    <i class="fa fa-plus-circle" id="add-recipe"></i>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="container" id="addRecipeBox">
-        <div class="markSign">
-            <i class="fa fa-times-circle" id="close-sign"></i>
-        </div>
-        <form id="addRecipeForm" autocomplete="off">
-            <p>Recipe Name</p>
-            <input type="text" id="recipe-name">
-            <p>Ingredents</p>
-            <textarea cols="40" rows="5" id="ingredents"></textarea>
-
-            <p>Descipttion</p>
-            <textarea cols="40" rows="5" id="description"></textarea>
-        </form>
-
-        <div class="btns">
-            <button class="addRecipe">Add</button>
-            <button class="close">Close</button>
         </div>
     </div>
 

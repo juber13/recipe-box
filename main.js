@@ -1,112 +1,124 @@
-var recipeMenu = document.querySelector(".recipe-menu");
-var RecipeBtn = document.getElementById("add-recipe");
+var addRecipeButton = document.querySelector("#newRecipeBtn");
+var addRecipeForm = document.querySelector(".addRecipeForm");
+var recipeForm = document.querySelector("#recipeForm");
 
-var recipeBox = document.querySelector("#addRecipeBox");
-var recipeName = document.querySelector("#recipe-name");
-
-var addRecipeForm = document.getElementById("addRecipeForm");
-
-var markSign = document.querySelector("#close-sign");
-var closeReciptBoxBtn = document.querySelector(".close");
-
-var recipeHeading = document.getElementById("recipe-heading");
-
-var addRecipeBtn = document.querySelector(".addRecipe");
-var ingredents = document.getElementById("ingredents");
-
-var description = document.getElementById("description");
-var ingredentList = document.getElementById("recipe-ingredents");
-
-var editTextIcon = document.getElementById("edit-text");
-var recipeDirectionList = document.getElementById("recipe-direction");
+var addRecipeContainer = document.querySelector(".add-recipe-container");
+var recipeApp = document.querySelector(".recipe-app");
+// getting the parent of ul menu
 
 var recipeData = [];
 
-var recipeIconMenu = document.getElementById("recipe-text-div");
-console.log(recipeIconMenu);
-
-function renderData() {
-  recipeIconMenu.innerHTML = "";
+function rederRecipeData() {
   for (var i = 0; i < recipeData.length; i++) {
-    nameList = document.createElement("li");
-    nameList.textContent = recipeData[i].name;
-    nameList.setAttribute("data-index", i);
-    recipeMenu.appendChild(nameList);
+    var div = document.createElement("div");
+    div.className = "card-1";
 
-    editIcon = document.createElement("i");
+    var heading = document.createElement("div");
+    heading.className = "heading";
+    var recipeHeading = document.createElement("h2");
+    recipeHeading.textContent = recipeData[i].name;
+    heading.appendChild(recipeHeading);
+
+    var ingredentDiv = document.createElement("div");
+    ingredentDiv.className = "ingredent-div";
+    var ingredentHeading = document.createElement("p");
+    ingredentHeading.textContent = "Ingredents";
+
+    var ingredentsMenu = document.createElement("ul");
+    var ingredentsList = document.createElement("li");
+    ingredentsList.textContent = recipeData[i].ingredent;
+    ingredentsMenu.appendChild(ingredentsList);
+
+    ingredentDiv.appendChild(ingredentHeading);
+    ingredentDiv.appendChild(ingredentsMenu);
+
+    var directionDiv = document.createElement("div");
+    directionDiv.className = "direction-div";
+    var directionHeading = document.createElement("p");
+    directionHeading.textContent = "Direction";
+
+    var directionMenu = document.createElement("ul");
+    var directionList = document.createElement("li");
+    directionList.textContent = recipeData[i].direction;
+    directionMenu.appendChild(directionList);
+
+    directionDiv.appendChild(directionHeading);
+    directionDiv.appendChild(directionMenu);
+
+    var divIcon = document.createElement("div");
+    divIcon.className = "iconDiv";
+
+    var editIcon = document.createElement("i");
     editIcon.className = "fa fa-edit";
+    editIcon.id = "editMe";
     editIcon.setAttribute("edit-index", i);
-    editIcon.id = "editBtn";
 
     deleteIcon = document.createElement("i");
     deleteIcon.className = "fa fa-trash";
+    deleteIcon.id = "deleteMe";
     deleteIcon.setAttribute("delete-index", i);
-    deleteIcon.id = "deleteBtn";
 
-    recipeIconMenu.appendChild(deleteIcon);
-    recipeIconMenu.appendChild(editIcon);
+    divIcon.appendChild(editIcon);
+    divIcon.appendChild(deleteIcon);
+
+    div.appendChild(heading);
+    div.appendChild(ingredentDiv);
+    div.appendChild(directionDiv);
+    div.appendChild(divIcon);
+
+    recipeApp.appendChild(div);
+    divIcon.addEventListener("click", removeRecipeBox);
   }
 }
 
-function addRecipe() {
-  recipeMenu.innerHTML = "";
+function addRecipe(e) {
+  recipeApp.innerHTML = "";
+  e.preventDefault();
+
   if (
     recipeName.value == "" ||
-    ingredents.value == "" ||
-    description.value == ""
+    ingredentsName.value == "" ||
+    directionName.value == ""
   ) {
-    alert("please add the value in empty boxs");
+    alert("please fill all the recipe input boxes");
     return;
-  }
-  var dataObject = {};
-  dataObject.name = recipeName.value;
-  dataObject.ingredents = ingredents.value;
-  dataObject.description = description.value;
-  recipeData.push(dataObject);
-  renderData();
-  removeClass();
-  addRecipeForm.reset();
-  console.log(recipeData);
-}
-
-function getRecipe(e) {
-  ingredentList.innerHTML = "";
-  recipeDirectionList.innerHTML = "";
-
-  if (e.target.nodeName == "LI") {
-    var dataIndex = e.target.getAttribute("data-index");
-    var recipes = recipeData[dataIndex];
-    recipeHeading.textContent = recipes.name;
-    var ingredentsLi = document.createElement("li");
-    ingredentsLi.textContent = recipes.ingredents;
-
-    var descriptionLi = document.createElement("li");
-    descriptionLi.textContent = recipes.description;
-
-    ingredentList.appendChild(ingredentsLi);
-    recipeDirectionList.appendChild(descriptionLi);
   } else {
-    return;
+    var dataObject = {};
+    dataObject.name = recipeName.value;
+    dataObject.ingredent = ingredentsName.value;
+    dataObject.direction = directionName.value;
+    recipeData.push(dataObject);
+    rederRecipeData();
+  }
+
+  addRecipeButton.style.display = "block";
+
+  addRecipeForm.style.display = "none";
+}
+
+function addRecipeClass() {
+  this.style.display = "none";
+  addRecipeForm.style.display = "block";
+}
+
+function removeRecipeBox(e) {
+  if (e.target.id === "deleteMe") {
+    var deletIndex = e.target.getAttribute("delete-index");
+    var dataIndex = recipeData[deletIndex];
+    recipeData.splice(dataIndex, 1);
+    recipeApp.removeChild(recipeApp.childNodes[deletIndex]);
+    recipeApp.innerHTML = "";
+    rederRecipeData();
+
+    console.log(recipeData);
+  } else {
+    if (e.target.id === "editMe") {
+      console.log("yes I am matching");
+    } else {
+      return;
+    }
   }
 }
 
-function editRecipeText(e) {
-  var editIconIndex = e.target.getAttribute("edit-index");
-  console.log(editIconIndex);
-}
-
-recipeIconMenu.addEventListener("click", editRecipeText);
-
-function addClass() {
-  recipeBox.classList.add("active");
-}
-
-function removeClass() {
-  recipeBox.classList.remove("active");
-}
-
-markSign.addEventListener("click", removeClass);
-addRecipeBtn.addEventListener("click", addRecipe);
-closeReciptBoxBtn.addEventListener("click", removeClass);
-RecipeBtn.addEventListener("click", addClass);
-recipeMenu.addEventListener("click", getRecipe);
+addRecipeButton.addEventListener("click", addRecipeClass);
+recipeForm.addEventListener("submit", addRecipe);
