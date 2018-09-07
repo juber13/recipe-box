@@ -7,6 +7,25 @@ body {
   background: oldlace;
 }
 
+.confirmBox {
+  width: 90%;
+  padding: 0;
+  height: 50px;
+  background: #f4e9d5;
+  transition: 1s ease;
+  position: relative;
+  bottom: 8px;
+  left: 30px;
+  display: none;
+}
+
+.confirmBox p {
+  font-weight: bold;
+  color: pink;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .header {
   text-align: center;
   text-shadow: 5px 5px 5px #000;

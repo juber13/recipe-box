@@ -6,6 +6,10 @@ var addRecipeContainer = document.querySelector(".add-recipe-container");
 var recipeApp = document.querySelector(".recipe-app");
 // getting the parent of ul menu
 
+// confirm meessage box
+
+var confirmBox = document.querySelector(".confirmBox");
+
 var recipeData = [];
 
 function rederRecipeData() {
@@ -80,24 +84,23 @@ function addRecipe(e) {
     ingredentsName.value == "" ||
     directionName.value == ""
   ) {
-    alert("please fill all the recipe input boxes");
+    alert("fille fill up these recipe boxes");
     return;
-  } else {
-    var dataObject = {};
-    dataObject.name = recipeName.value;
-    dataObject.ingredent = ingredentsName.value;
-    dataObject.direction = directionName.value;
-    recipeData.push(dataObject);
-    rederRecipeData();
   }
 
-  addRecipeButton.style.display = "block";
+  var dataObject = {};
+  dataObject.name = recipeName.value;
+  dataObject.ingredent = ingredentsName.value;
+  dataObject.direction = directionName.value;
+  recipeData.push(dataObject);
 
   addRecipeForm.style.display = "none";
+  addRecipeButton.style.display = "block";
+  rederRecipeData();
 }
 
 function addRecipeClass() {
-  this.style.display = "none";
+  addRecipeButton.style.display = "none";
   addRecipeForm.style.display = "block";
 }
 
@@ -105,20 +108,33 @@ function removeRecipeBox(e) {
   if (e.target.id === "deleteMe") {
     var deletIndex = e.target.getAttribute("delete-index");
     var dataIndex = recipeData[deletIndex];
-    recipeData.splice(dataIndex, 1);
-    recipeApp.removeChild(recipeApp.childNodes[deletIndex]);
-    recipeApp.innerHTML = "";
-    rederRecipeData();
+    var confirmMessage = confirm(
+      `Do you really want to delete this ${
+        dataIndex.name
+      } from your recipe box list ?`
+    );
 
-    console.log(recipeData);
-  } else {
-    if (e.target.id === "editMe") {
-      console.log("yes I am matching");
+    if (confirmMessage === true) {
+      recipeData.splice(deletIndex, 1);
+      recipeApp.removeChild(recipeApp.childNodes[deletIndex]);
+      confirmBox.innerHTML = `<p>Successfully deleted ${dataIndex.name}</p>`;
+      recipeApp.innerHTML = "";
+      rederRecipeData();
+      confirmBox.style.display = "block";
+
+      setTimeout(function () {
+        confirmBox.style.display = "none";
+      }, 3000);
+
+      console.log(dataIndex);
     } else {
-      return;
+      if (e.target.id === "editMe") {
+        console.log("yes I am matching");
+      } else {
+        return;
+      }
     }
   }
 }
-
 addRecipeButton.addEventListener("click", addRecipeClass);
 recipeForm.addEventListener("submit", addRecipe);
