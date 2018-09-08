@@ -120,7 +120,6 @@ function removeRecipeBox(e) {
       recipeApp.innerHTML = "";
       rederRecipeData();
       confirmBox.style.display = "block";
-
       setTimeout(function() {
         confirmBox.style.display = "none";
       }, 3000);

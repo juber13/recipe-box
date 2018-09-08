@@ -110,7 +110,7 @@ h2 {
 }
 
 .add-recipe-container {
-  width: 45%;
+  width: 350px;
   max-width: 350px;
   height: 330px;
   text-align: center;
@@ -171,4 +171,24 @@ h2 {
   margin: 10px;
   color: #ddd;
   font-size: 30px;
+}
+
+@media screen and (max-width:412px) {
+  .card-1 {
+    width: 280px;
+    height: 300px;
+    margin: 20px;
+  }
+
+  .add-recipe-container {
+    width: 305px;
+    height: 305px;
+    padding: 8px 0;
+    margin: 0 20px;
+  }
+
+  .recipe-wrapper {
+    width: 95%;
+    margin: 0 auto;
+  }
 }
