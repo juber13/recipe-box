@@ -177,14 +177,14 @@ h2 {
   .card-1 {
     width: 280px;
     height: 300px;
-    margin: 20px;
+    margin: 35px;
   }
 
   .add-recipe-container {
     width: 305px;
     height: 305px;
     padding: 8px 0;
-    margin: 0 20px;
+    margin: 0 35px;
   }
 
   .recipe-wrapper {
