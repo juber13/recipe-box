@@ -188,7 +188,11 @@ h2 {
   }
 
   .addRecipeForm input {
-    width: 75%;
+    width: 80%;
+  }
+
+  .confirmBox {
+    width: 100%;
   }
 
   input,
