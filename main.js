@@ -10,7 +10,12 @@ var recipeApp = document.querySelector(".recipe-app");
 
 var confirmBox = document.querySelector(".confirmBox");
 
-var recipeData = [];
+var recipeData = JSON.parse(localStorage.getItem("itemName")) || [];
+
+function setToLocalStorage(dataIndex) {
+  localStorage.setItem("itemName", JSON.stringify(recipeData));
+  localStorage.removeItem(dataIndex.name);
+}
 
 function rederRecipeData() {
   for (var i = 0; i < recipeData.length; i++) {
@@ -69,7 +74,6 @@ function rederRecipeData() {
     div.appendChild(ingredentDiv);
     div.appendChild(directionDiv);
     div.appendChild(divIcon);
-
     recipeApp.appendChild(div);
     divIcon.addEventListener("click", removeRecipeBox);
   }
@@ -79,15 +83,6 @@ function addRecipe(e) {
   recipeApp.innerHTML = "";
   e.preventDefault();
 
-  if (
-    recipeName.value == "" ||
-    ingredentsName.value == "" ||
-    directionName.value == ""
-  ) {
-    alert("fille fill up these recipe boxes");
-    return;
-  }
-
   var dataObject = {};
   dataObject.name = recipeName.value;
   dataObject.ingredent = ingredentsName.value;
@@ -96,6 +91,8 @@ function addRecipe(e) {
 
   addRecipeForm.style.display = "none";
   addRecipeButton.style.display = "block";
+  recipeForm.reset();
+  localStorage.setItem("itemName", JSON.stringify(recipeData));
   rederRecipeData();
 }
 
@@ -108,6 +105,7 @@ function removeRecipeBox(e) {
   if (e.target.id === "deleteMe") {
     var deletIndex = e.target.getAttribute("delete-index");
     var dataIndex = recipeData[deletIndex];
+    console.log(dataIndex.name);
     var confirmMessage = confirm(
       `Do you really want to delete this ${
         dataIndex.name
@@ -118,11 +116,12 @@ function removeRecipeBox(e) {
       recipeData.splice(deletIndex, 1);
       recipeApp.removeChild(recipeApp.childNodes[deletIndex]);
       confirmBox.innerHTML = `<p>Successfully deleted ${dataIndex.name}</p>`;
+      setToLocalStorage(dataIndex);
       recipeApp.innerHTML = "";
       rederRecipeData();
       confirmBox.style.display = "block";
 
-      setTimeout(function () {
+      setTimeout(function() {
         confirmBox.style.display = "none";
       }, 3000);
 
@@ -138,3 +137,4 @@ function removeRecipeBox(e) {
 }
 addRecipeButton.addEventListener("click", addRecipeClass);
 recipeForm.addEventListener("submit", addRecipe);
+rederRecipeData();
