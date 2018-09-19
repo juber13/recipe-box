@@ -6,6 +6,10 @@ var addRecipeContainer = document.querySelector(".add-recipe-container");
 var recipeApp = document.querySelector(".recipe-app");
 // getting the parent of ul menu
 
+var addRecipeContainer = document.querySelector(".add-recipe-container");
+var updateRecipeContainer = document.querySelector(".update-recipe-container");
+console.log(updateRecipeContainer);
+
 // confirm meessage box
 
 var confirmBox = document.querySelector(".confirmBox");
@@ -76,6 +80,7 @@ function rederRecipeData() {
     div.appendChild(divIcon);
     recipeApp.appendChild(div);
     divIcon.addEventListener("click", removeRecipeBox);
+    divIcon.addEventListener("click", getEditIndex);
   }
 }
 
@@ -99,6 +104,11 @@ function addRecipe(e) {
 function addRecipeClass() {
   addRecipeButton.style.display = "none";
   addRecipeForm.style.display = "block";
+}
+
+function showUpdateRecipeForm() {
+  updateRecipeContainer.style.display = "block";
+  addRecipeContainer.style.display = "none";
 }
 
 function removeRecipeBox(e) {
@@ -125,15 +135,39 @@ function removeRecipeBox(e) {
       }, 3000);
 
       console.log(dataIndex);
-    } else {
-      if (e.target.id === "editMe") {
-        console.log("yes I am matching");
-      } else {
-        return;
-      }
     }
   }
 }
+
+var saveButton = document.getElementById("saveButton");
+var UpdateRecipeName = document.getElementById("UpdateRecipeName");
+var UpdateIngredentsName = document.getElementById("UpdateIngredentsName");
+var UpdateDirectionName = document.getElementById("UpdateDirectionName");
+
+function getEditIndex(e) {
+  if (e.target.id === "editMe") {
+    var updateIndex = e.target.getAttribute("edit-index");
+    updateDataIndex = recipeData[updateIndex];
+    console.log(updateDataIndex);
+    showUpdateRecipeForm();
+  }
+}
+
+function updateRecipeDate(e) {
+  e.preventDefault();
+
+  updateDataIndex.name = UpdateRecipeName.value;
+  updateDataIndex.ingredent = UpdateIngredentsName.value;
+
+  updateDataIndex.direction = UpdateDirectionName.value;
+
+  updateRecipeContainer.style.display = "none";
+  addRecipeContainer.style.display = "block";
+  addRecipe(e);
+}
+
 addRecipeButton.addEventListener("click", addRecipeClass);
 recipeForm.addEventListener("submit", addRecipe);
 rederRecipeData();
+
+saveButton.addEventListener("click", updateRecipeDate);

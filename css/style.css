@@ -109,7 +109,8 @@ h2 {
   color: #ddd;
 }
 
-.add-recipe-container {
+.add-recipe-container,
+.update-recipe-container {
   width: 350px;
   max-width: 350px;
   height: 330px;
@@ -120,6 +121,10 @@ h2 {
   vertical-align: middle;
   border: 1px solid #ddd;
   margin-left: 8px;
+}
+
+.update-recipe-container {
+  display: none;
 }
 
 .add-recipe-container #newRecipeBtn {
@@ -143,16 +148,26 @@ h2 {
   top: 8px;
 }
 
+
+.UpdateRecipeForm {
+  font-family: arial;
+  font-size: 12px;
+  position: relative;
+  top: 8px;
+}
+
 .active.addRecipeForm {
   display: block;
 }
 
-.addRecipeForm input {
+.addRecipeForm input,
+.UpdateRecipeForm input {
   width: 68%;
   padding: 10px 0 10px 0px;
 }
 
-.addRecipeForm button {
+.addRecipeForm button,
+.UpdateRecipeForm button {
   width: 114px;
   padding: 10px;
   position: relative;
