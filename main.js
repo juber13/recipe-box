@@ -11,6 +11,9 @@ var updateRecipeContainer = document.querySelector(".update-recipe-container");
 console.log(updateRecipeContainer);
 
 // confirm meessage box
+var closeBtn = document.querySelector(".closeBtn");
+var closeupdateButton = document.querySelector(".upDateCloseBtn");
+console.log(closeBtn);
 
 var confirmBox = document.querySelector(".confirmBox");
 
@@ -171,3 +174,13 @@ recipeForm.addEventListener("submit", addRecipe);
 rederRecipeData();
 
 saveButton.addEventListener("click", updateRecipeDate);
+
+closeBtn.addEventListener("click", function() {
+  addRecipeForm.style.display = "none";
+  addRecipeButton.style.display = "block";
+});
+
+closeupdateButton.addEventListener("click", function() {
+  updateRecipeContainer.style.display = "none";
+  addRecipeContainer.style.display = "block";
+});
