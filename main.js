@@ -1,6 +1,8 @@
 var addRecipeButton = document.querySelector("#newRecipeBtn");
 var addRecipeForm = document.querySelector(".addRecipeForm");
+
 var recipeForm = document.querySelector("#recipeForm");
+var UpdateRecipeForm = document.querySelector("#UpdateRecipeForm");
 
 var addRecipeContainer = document.querySelector(".add-recipe-container");
 var recipeApp = document.querySelector(".recipe-app");
@@ -149,7 +151,7 @@ var UpdateDirectionName = document.getElementById("UpdateDirectionName");
 
 function getEditIndex(e) {
   if (e.target.id === "editMe") {
-    var updateIndex = e.target.getAttribute("edit-index");
+    updateIndex = e.target.getAttribute("edit-index");
     updateDataIndex = recipeData[updateIndex];
     console.log(updateDataIndex);
     showUpdateRecipeForm();
@@ -157,16 +159,17 @@ function getEditIndex(e) {
 }
 
 function updateRecipeDate(e) {
+  recipeApp.innerHTML = "";
   e.preventDefault();
-
   updateDataIndex.name = UpdateRecipeName.value;
   updateDataIndex.ingredent = UpdateIngredentsName.value;
 
   updateDataIndex.direction = UpdateDirectionName.value;
-
   updateRecipeContainer.style.display = "none";
   addRecipeContainer.style.display = "block";
-  addRecipe(e);
+  rederRecipeData();
+  setToLocalStorage(updateIndex);
+  UpdateRecipeForm.reset();
 }
 
 addRecipeButton.addEventListener("click", addRecipeClass);
