@@ -10,12 +10,10 @@ var recipeApp = document.querySelector(".recipe-app");
 
 var addRecipeContainer = document.querySelector(".add-recipe-container");
 var updateRecipeContainer = document.querySelector(".update-recipe-container");
-console.log(updateRecipeContainer);
 
 // confirm meessage box
 var closeBtn = document.querySelector(".closeBtn");
 var closeupdateButton = document.querySelector(".upDateCloseBtn");
-console.log(closeBtn);
 
 var confirmBox = document.querySelector(".confirmBox");
 
@@ -139,7 +137,6 @@ function removeRecipeBox(e) {
         confirmBox.style.display = "none";
       }, 3000);
 
-      console.log(dataIndex);
     }
   }
 }
