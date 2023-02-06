@@ -7,6 +7,10 @@ body {
   background: oldlace;
 }
 
+* , ::after, ::before{
+  box-sizing: border-box;
+}
+
 .confirmBox {
   width: 90%;
   padding: 0;
@@ -163,7 +167,7 @@ h2 {
 .addRecipeForm input,
 .UpdateRecipeForm input {
   width: 68%;
-  padding: 10px 0 10px 0px;
+  padding: 10px 0;
 }
 
 .addRecipeForm button,
